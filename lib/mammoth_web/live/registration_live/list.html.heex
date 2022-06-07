@@ -1,0 +1,38 @@
+<h1>Registration List</h1>
+
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+      </tr>          
+    </thead>
+    <tbody>
+      <tr>
+        <td>24 May</td>
+        <td>Alice</td>
+        <td>alice@example.com</td>
+        <td>02 1234 5678</td>
+      </tr>
+      <tr>
+        <td>24 May</td>
+        <td>Bob</td>
+        <td>bob@example.com</td>
+        <td>07 1234 5678</td>
+      </tr>
+      <tr>
+        <td>25 May</td>
+        <td>Charles</td>
+        <td>charles@example.com</td>
+        <td>0412 345 678</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="row g-3">
+  <%= link "New Registration", to: Routes.registration_new_path(@socket, :new) %>
+</div>

@@ -17,7 +17,8 @@ defmodule MammothWeb.Router do
   scope "/", MammothWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", RegistrationLive.New, :new
+    live "/list", RegistrationLive.List, :list
   end
 
   # Other scopes may use custom stacks.
