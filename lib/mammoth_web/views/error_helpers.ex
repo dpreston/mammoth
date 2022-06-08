@@ -5,6 +5,13 @@ defmodule MammothWeb.ErrorHelpers do
 
   use Phoenix.HTML
 
+  def error_class(form, field) do
+    case Enum.count(Keyword.get_values(form.errors, field)) do
+      0 -> ""
+      _ -> "is-invalid"
+    end
+  end
+
   @doc """
   Generates tag for inlined form input errors.
   """
@@ -12,9 +19,17 @@ defmodule MammothWeb.ErrorHelpers do
     Enum.map(Keyword.get_values(form.errors, field), fn error ->
       content_tag(:span, translate_error(error),
         class: "invalid-feedback",
+        id: "#{Atom.to_string(field)}Error",
         phx_feedback_for: input_name(form, field)
       )
     end)
+  end
+
+  def aria_invalid(form, field) do
+    case Enum.count(Keyword.get_values(form.errors, field)) do
+      0 -> ""
+      _ -> "true"
+    end
   end
 
   @doc """

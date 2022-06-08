@@ -6,7 +6,7 @@ defmodule Mammoth.Repo.Migrations.CreateRegistrations do
       add :email, :string
       add :name, :string
       add :phone, :string
-      add :date, :utc_datetime
+      add :session, :date
 
       timestamps(type: :timestamptz)
     end

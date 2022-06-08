@@ -1,69 +1,49 @@
 <h1>Mammoths - A Deep Dive</h1>
 
-<div class="row g-3">
-  <form class="col-sm-12 col-md-6" novalidate>
-  <div class="card">
+<p>Register for a session of the `Mammoths - A Deep Dive` presentation below.</p>
+<p>Please provide all the details to register.</p>
+
+<div class="row">
+  <div class="card col-sm-12 col-md-6">
     <div class="card-body">
-      <div class="row">
-        <!-- Email -->
-        <div class="col-sm-12">
-          <label for="email" class="form-label">Email</label>
-          <input id="email" type="email" class="form-control" />
-          <div class="invalid-feedback">
-            Please enter an email address
+      <.form let={f} for={@changeset} phx-submit="save" novalidate >
+        <div class="row #{valid_class(f)}">
+          <!-- Email -->
+          <div class="col-sm-12 g-3">
+            <%= label f, :email, for: "emailField", class: "form-label", id: "emailLabel" %>
+            <%= text_input f, :email, id: "emailField", class: "form-control #{error_class(f, :email)}", aria_labelledby: "emailLabel", aria_errormessage: "emailError", aria_invalid: "#{aria_invalid(f, :email)}" %>
+            <%= error_tag f, :email %>
+          </div>
+
+          <!-- Name -->
+          <div class="col-sm-12 g-3">
+            <%= label f, :name, for: "nameField", class: "form-label", id: "nameLabel" %>
+            <%= text_input f, :name, id: "nameField", class: "form-control #{error_class(f, :name)}", aria_labelledby: "nameLabel", aria_errormessage: "nameError", aria_invalid: "#{aria_invalid(f, :name)}" %>
+            <%= error_tag f, :name %>
+          </div>
+
+          <!-- Phone Number -->
+          <div class="col-sm-12 g-3">
+            <%= label f, :phone, id: "phoneLabel", for: "phoneField", class: "form-label" %>
+            <%= telephone_input f, :phone, id: "phoneField", class: "form-control #{error_class(f, :phone)}", aria_labelledby: "phoneLabel", aria_errormessage: "phoneError", aria_invalid: "#{aria_invalid(f, :phone)}" %>
+            <%= error_tag f, :phone %>
+          </div>
+
+          <!-- DatePicker -->
+          <div class="col-sm-12 g-3">
+            <%= label f, :session, id: "dateLabel", for: "datePicker", class: "form-label" %>
+            <%= date_input f, :session, id: "datePicker", min: "2022-05-24", max: "2022-05-26", class: "form-control #{error_class(f, :session)}", aria_labelledby: "sessionLabel", aria_errormessage: "sessionError", aria_invalid: "#{aria_invalid(f, :session)}" %>
+            <%= error_tag f, :session %>
+          </div>
+
+          <div class="col-12 g-3">
+            <%= submit "Register", phx_disable_with: "Registering...", class: "btn btn-primary" %>
           </div>
         </div>
-
-        <!-- Name -->
-        <div class="col-sm-12 g-3">
-          <label for="name" class="form-label">Name</label>
-          <input id="name" type="text" class="form-control" />
-          <div class="invalid-feedback">
-            Please enter your name
-          </div>
-        </div>
-
-        <!-- Phone Number -->
-        <div class="col-sm-12 g-3">
-          <label for="phoneNumber" class="form-label">Phone Number</label>
-          <input id="phoneNumber" type="tel" class="form-control" />
-          <div class="invalid-feedback">
-            Please enter a phone humber
-          </div>
-        </div>
-
-        <!-- Date -->
-        <div class="col-12 g-3">
-          <label for="date" class="form-label">Date</label>
-          <select id="date" class="form-select" size="3" aria-label="select date">
-            <option>May 24</option>
-            <option>May 25</option>
-            <option>May 26</option>          
-          </select>
-          <div class="invalid-feedback">
-            Please select a date
-          </div>
-        </div>
-
-        <!-- Phone Number -->
-        <div class="col-sm-12 g-3">
-          <label for="datePicker" class="form-label">Date Picker</label>
-          <input id="datePicker" type="date" min="2022-05-24" max="2022-05-26"class="form-control" />
-          <div class="invalid-feedback">
-            Please select a date
-          </div>
-        </div>
-
-        <div class="col-12 g-3">
-          <button class="btn btn-primary" type="submit">Register</button>
-        </div>
-
-      </div><!-- row -->
-    </div><!-- card-body -->
-  </div><!-- card -->
-  </form>
+      </.form>
+    </div>
+  </div>
 </div>
-
 <div class="row g-3">
   <%= link "List Registrations", to: Routes.registration_list_path(@socket, :list) %>
 </div>
