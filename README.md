@@ -21,8 +21,10 @@ Aria attributes are added with the corresponding error messages.
 
 ## Local Dev Server
 
-To start the dev Phoenix server:
+The dev server connects to Postgres using u:postgres p:postgres.
 
+To start the dev Phoenix server:
+  
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
   * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
